@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+<h2>Admin Access Control</h2>
+<div>
+    <p>User accounts details are below:</p>
+    <table>
+      {% for row in account %}
+        <tr>
+            <td>Id:</td>
+            <td>{{ row['id'] }}</td>
+        </tr>
+        <tr>
+            <td>Username:</td>
+            <td>{{ row['username'] }}</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>{{ row['email'] }}</td>
+        </tr>
+        <tr>
+            <td>//</td>
+        </tr>
+      {% endfor %}
+    </table>
+    <form action="{{ url_for('admin') }}" method="post" autocomplete="off">
+        <label for="delete id">
+            <i class="fas fa-user"></i>
+        </label>
+        <input type="text" name="delID" placeholder="Enter Id to delete" id="username" required>
+        <input type="submit" value="delete">
+    </form>
+</div>
+{% endblock %}

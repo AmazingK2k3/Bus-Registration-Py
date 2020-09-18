@@ -1,0 +1,123 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+     {% if account['role'] == 'admin' %}
+     <h2>Buses scheduled</h2>
+     <div>
+          <table>
+          {% for row in buslist %}
+            <tr>
+                <td><p><a href="{{ url_for('book',  br= row['busid']) }}"><b><u>{{ row['busroute'] }} </u></b></a></p></td>
+                <td><a href="{{ url_for('home', id= row['busid']) }}"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+            </tr>
+            <tr>
+                <td>Id:</td>
+                <td>{{ row['busid'] }}</td>
+            </tr>
+            <tr>
+                <td>Type of transport:</td>
+                <td>{{ row['type'] }}</td>
+            </tr>
+            <tr>
+               <td>Travel duration:</td>
+               <td>{{ row['duration'] }}</td>
+           </tr>
+           <tr>
+               <td>No. of seats:</td>
+               <td>{{ row['seats'] }}</td>
+           </tr>
+           <tr>
+               <td>Cost per seat:</td>
+               <td>{{ row['cost'] }}</td>
+           </tr>
+           <tr>
+               <td>Date of departure:</td>
+               <td>{{ row['date'] }}</td>
+           </tr>
+           <tr>
+               <td>Time of departure:</td>
+               <td>{{ row['departure_time'] }}</td>
+           </tr>
+          {% endfor %}
+           </table>
+           <p><b><u>Add New Bus Routes:</u></b></p>
+           <form action="{{ url_for('home') }}" method="post" autocomplete="off">
+                <label for="busid">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                </label>
+             <input type="number" name="busid" placeholder="Bus ID" id="busid" >
+                <label for="busroute">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+				</label>
+             <input type="text" name="busroute" placeholder="Bus-route" id="busroute" >
+				<label for="type">
+					<i class="fa fa-bus" aria-hidden="true"></i>
+				</label>
+				<input type="text" name="type" placeholder="Type of transport" id="type">
+				<label for="duration">
+                    <i class="fa fa-road" aria-hidden="true"></i>
+				</label>
+                <input type="text" name="duration" placeholder="Time of travel" id="duration">
+                <label for="seats">
+					<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>
+				</label>
+                <input type="number" name="seats" placeholder="Number of seats " id="seats">
+                <label for="cost">
+					<i class="fa fa-usd" aria-hidden="true"></i>
+				</label>
+                <input type="number" name="cost" placeholder="Cost per seat" id="cost">
+                <label for="date">
+					<i class="fa fa-calendar" aria-hidden="true"></i>
+				</label>
+                <input type="date" name="date" placeholder="Date of departure" id="date">
+                <label for="time">
+					<i class="fa fa-clock-o" aria-hidden="true"></i>
+				</label>
+                <input type="time" name="time" placeholder="Time of departure" id="time">
+             <input type="submit" value="Add">
+           </form>
+     </div>
+     
+     {% else %}
+     <h2>Home Page</h2>
+     <p>Welcome back, {{ account['username'] }}!</p><br>
+     <p>Buses scheduled: Book Now!</p>
+     <div>
+          <table>
+          {% for row in buslist %}
+            <tr>
+                <td><p><a href="{{ url_for('book',  br= row['busid']) }}"><b><u>{{ row['busroute'] }} </u></b></a></p></td>
+            </tr>
+            <tr>
+                <td>Id:</td>
+                <td>{{ row['busid'] }}</td>
+            </tr>
+            <tr>
+                <td>Type of transport:</td>
+                <td>{{ row['type'] }}</td>
+            </tr>
+            <tr>
+               <td>Travel duration:</td>
+               <td>{{ row['duration'] }}</td>
+           </tr>
+           <tr>
+               <td>No. of seats:</td>
+               <td>{{ row['seats'] }}</td>
+           </tr>
+           <tr>
+               <td>Cost per seat:</td>
+               <td>{{ row['cost'] }}</td>
+           </tr>
+           <tr>
+               <td>Date of departure:</td>
+               <td>{{ row['date'] }}</td>
+           </tr>
+           <tr>
+               <td>Time of departure:</td>
+               <td>{{ row['departure_time'] }}</td>
+           </tr>
+          {% endfor %}
+     {%endif%}
+{% endblock %}

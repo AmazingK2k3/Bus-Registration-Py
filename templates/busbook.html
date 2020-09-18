@@ -1,0 +1,285 @@
+
+{% if account['role'] == 'admin' %}
+{% extends 'layout.html' %}
+{% block title %}Booking{% endblock %}
+{% block content %}
+        <h2>Booking:</h2>
+        <div>
+            <p>Passenger list:</p>
+            <table>
+            {% for row in psgr %}
+              <tr>
+                  <td>Id:</td>
+                  <td>{{ row['CusID'] }}</td>
+              </tr>
+              <tr>
+                  <td>Customer Name:</td>
+                  <td>{{ row['CusName'] }}</td>
+              </tr>
+              <tr>
+                 <td>Email ID:</td>
+                 <td>{{ row['CusMail'] }}</td>
+             </tr>
+             <tr>
+                 <td>No. of seats:</td>
+                 <td>{{ row['nofseats'] }}</td>
+             </tr>
+             <tr>
+                 <td>Amount paid:</td>
+                 <td>{{ row['amt'] }}</td>
+             </tr>
+             <tr>
+                <td>//</td>
+             </tr>
+            {% endfor %}
+              <tr>
+                 <td>Seats left: {{ totalseats }}</td>
+             </tr>
+          </table>
+        </div>
+        {% endblock %}
+
+
+{% else %}
+<!DOCTYPE html>
+<html>
+   <head> 
+     <title>Booking</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <style>
+       body {
+  font-size: 17px;
+  padding: 8px;
+  background-color: #435165
+}
+
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 400px;
+}
+
+.row1 {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.heading{
+  margin: 0 700px;
+}
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+input[type=text], input[type=number], input[type=email] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+
+select {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color:  #3274d6;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color:  #1c52a3;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+.msg{
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+     </style>
+   </head>
+   <body> 
+     <div class="heading"><span style="color:#f2f2f2"><h2>Book Now</h2></span></div>
+    <div class="row">
+     <form action="{{ url_for('book') }}" method="POST" autocomplete="off">
+          <div class="col-75">
+            <div class="container">     
+             
+              <div class="row1">
+                  <div class="col-50">   
+                    <h3>Billing</h3>
+                    <label for="CustName"><i class="fa fa-user"></i> Full Name</label>
+                    <input type="text" id="CustName" name="CustName" placeholder="John M. Doe" required>
+                    <label for="CusEmail"><i class="fa fa-envelope"></i> Email</label>
+                    <input type="email" id="CusEmail" name="CusEmail" placeholder="john@example.com" required>
+                    <label for="city"><i class="fa fa-institution"></i> City</label>
+                    <input type="text" id="city" name="city" placeholder="Chennai">
+       
+                    <div class="row1">
+                      <div class="col-50">
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="state" placeholder="Tamil Nadu">
+                       </div>
+                       <div class="col-50">
+                         <label for="psgrId">ID</label>
+                         <input type="number" id="psgrID" name="psgrID" placeholder="Enter your ID"  required>
+                       </div>
+                       </div>
+                     </div>
+                    <div class="col-50">
+                     <h3>Payment</h3>
+                     <label for="fname">Accepted Cards</label>
+                     <div class="icon-container">
+                       <i class="fa fa-cc-visa" style="color:navy;"></i>
+                       <i class="fa fa-cc-amex" style="color:blue;"></i>
+                       <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                       <i class="fa fa-cc-discover" style="color:orange;"></i>
+                     </div>
+                     <label for="card">Card type</label>
+                     <select id="card" name="card" placeholder="Credit card">
+                       <option value="Credit">Credit card</option>
+                       <option value="Debit">Debit card</option>
+                     </select>
+                     <label for="cname">Name on Card</label>
+                     <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                     <label for="ccnum">Card number</label>
+                     <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                     <label for="expmonth">Exp Month</label>
+                     <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                     <div class="row1">
+                       <div class="col-50">
+                         <label for="expyear">Exp Year</label>
+                         <input type="text" id="expyear" name="expyear" placeholder="2020">
+                       </div>
+                       <div class="col-50">
+                         <label for="cvv">CVV</label>
+                         <input type="text" id="cvv" name="cvv" placeholder="352">
+                       </div>
+                     </div>
+                    </div>
+               </div>
+               
+          
+             </div>
+          </div>
+          <div class="col-25">   
+             <div class="container">
+                 <h4>Bus booking</h4>
+                 <p>Seats left: {{ totalseats }}</p>
+                 <p>Cost per seat:  Rs.{{ costperseat }}</p>
+                 <div class="col-25">
+                    <label for="busRow"><i class="fa fa-bus"></i>  Bus ID</label>
+                    <input type="text" id="busRow" name="busID" placeholder=" Enter Bus ID" >
+                 </div>
+                 <div class="col-25">
+                     <label for="nofseats"><i class="fa fa-angle-double-right" aria-hidden="true"></i> No. of seats</label>
+                     <input type="number" id="nofseats" name="nofseats" max="8" placeholder=" Enter no. of seats" >
+                 </div>
+                 <div class="col-25">
+                  <label>
+                    <input type="checkbox" checked="checked" name="policy"> Accept SKMFJ Inc. terms and conditions
+                  </label>
+                  <input type="submit" value="Continue to checkout" class="btn" >
+                 </div>
+                 {% if msg !='' %}
+                 <div class="msg">
+                   <b>{{ msg }}</b></t></t>
+                   <a href="{{ url_for('home') }}">Return Home</a>                   
+                 </div>
+                 {%endif%}
+                 <hr>
+             </div>
+           </div>
+     </form>
+   </div>
+  </body>
+</html>
+{%endif%}
+
+   

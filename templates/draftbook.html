@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/style3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+ <body>
+    <span style="color:#f2f2f2"><h2>Your tickets are booked!!</h2></span>
+    <a href="{{ url_for('home') }}"><i class="fas fa-home"></i>Return Home</a>
+ </body>
+</html>
+
+
+
+
+
+
+<!--<div>
+    <p>Seats left: {{ totalseats }}</p>
+    <form action="{{ url_for('book') }}" method="post" autocomplete="off">
+        <label for="psgrId">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </label>
+        <input type="number" name="psgrID" placeholder="Enter your ID" id="psgrID" required>
+        <label for="CusName">
+            <i class="fas fa-user"></i>
+        </label>
+        <input type="text" name="CustName" placeholder="Enter your Name" id="CustName" required>
+        <label for="CusEmail">
+            <i class="fas fa-envelope"></i>
+        </label>
+        <input type="email" name="CusEmail" placeholder="Enter your Email" id="CusEmail" required>
+        <label for="nofseats">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </label>
+        <input type="number" max="8" name="nofseats" placeholder="Enter the no. of seats  " id="nofseats">
+        <label for="busRow">
+            <i class="fa fa-bus"></i>
+        </label>
+        <input type="text" name="busID" placeholder="Enter bus id" id="busRow" required>
+        <div class="msg">{{ msg }}</div>
+        <input type="submit" value="Book Now">
+    </form>
+ </div>
+
+      
+    
+    
+    
+    
+    
+    
+    -->
