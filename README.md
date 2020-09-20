@@ -17,15 +17,21 @@
 ## Explaination with Screenshots
 
 ### Home page
-* Simple Home interface with togglemenu
+* Simple Home interface with togglemenu and a bus display slide.
 
 ![Capture](https://user-images.githubusercontent.com/47426594/93707198-15cb0600-fb4a-11ea-8b31-fac194b262f8.PNG)
 
 ### Login and Register portal
 * Both Customer and Admin Login into the same portal , the code recognises the info and segregates into customer and admin home page respectively
 
+#### Login:
 ![Capture1](https://user-images.githubusercontent.com/47426594/93707201-16639c80-fb4a-11ea-96a0-7ae4bac8ca5e.PNG)
+<br>
 
+#### Registration:
+
+![Capture10](https://user-images.githubusercontent.com/47426594/93711105-2048c800-fb69-11ea-986e-d804547761ae.PNG)
+<br>
 ### Bus Detail Home Page:
 * This page displays the Buses scheduled and their details.
 
